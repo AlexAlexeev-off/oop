@@ -15,7 +15,6 @@ public abstract class BaseWebTest {
 
     public WebDriver driver;
     public WebDriverWait wait15second;
-    public WebDriverManager driverManager;
 
     @BeforeEach
     public void baseTestBeforeAll() {

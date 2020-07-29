@@ -1,5 +1,6 @@
 package ru.geekbrains.oop.les1.page;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,6 +24,7 @@ public class AuthorizationPage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("авторизация пользователем c логин: {login} пароль: {password}")
     public ContentPage authorization(String login, String password) {
         inputLogin.sendKeys(login);
         inputPassword.sendKeys(password);
@@ -32,15 +34,4 @@ public class AuthorizationPage {
         return new ContentPage(driver);
     }
 
-    public WebElement getInputLogin() {
-        return inputLogin;
-    }
-
-    public WebElement getInputPassword() {
-        return inputPassword;
-    }
-
-    public WebElement getButtonSingIn() {
-        return buttonSingIn;
-    }
 }
