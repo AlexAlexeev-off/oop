@@ -5,6 +5,8 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import ru.geekbrains.oop.les1.base.BeforeAndAfterStep;
 import ru.geekbrains.oop.les1.block.SearchTabsBlock;
 import ru.geekbrains.oop.les1.page.content.TestPage;
@@ -15,6 +17,8 @@ import static org.hamcrest.Matchers.*;
 
 @Feature("Поиск")
 @Story("Проверка отображения блоков")
+@DisplayName("Проверка отображения блоков")
+@Execution(ExecutionMode.CONCURRENT)
 public class SearchWebTest extends BeforeAndAfterStep {
 
     @BeforeEach
@@ -22,13 +26,12 @@ public class SearchWebTest extends BeforeAndAfterStep {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
-
     @DisplayName("Проверка количества контента")
     @Test
     void searchTest() {
         new TestPage(driver)
                 .openUrl()
-                .getHeader()
+                .getHeaderBlock()
                 .searchText("java")
                 .getSearchTabsBlock()
                 .checkCount(SearchTabsBlock.Tab.PROFESSIONS, greaterThanOrEqualTo(2))
